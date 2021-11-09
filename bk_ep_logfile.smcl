@@ -1,0 +1,782 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/burnettjw/Documents/Documents/Research/Heat rate efficiency and the rebound effect/Stata data and do files/Final Data/final_regression_analysis_2011_2016.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}29 Nov 2018, 14:36:08
+{txt}
+{com}. 
+. set linesize 200
+{txt}
+{com}. 
+. use final_data_2011_2016.dta
+{txt}
+{com}. 
+. /* ------------- */
+. /* CO2 Emissions */
+. /* ------------- */
+. 
+. * Panel data regression of the level of co2 on the heat rate and other control variables; absorbing on state-level effects
+. 
+. eststo: areg ln_co2 ln_heat_rate coal nat_gas petrol nameplate summer_cap winter_cap yr1-yr5 nerc2-nerc9, absorb(state) vce(robust)
+{p 0 6 2}{txt}note: nerc3 omitted because of collinearity{p_end}
+{p 0 6 2}note: nerc5 omitted because of collinearity{p_end}
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}    11,821
+{txt}Absorbed variable: {bf:state}{col 49}No. of categories{col 67}= {res}        51
+{txt}{col 49}F({res}  18{txt},{res}  11752{txt}){col 67}= {res}     16.18
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1515
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1466
+{txt}{col 49}Root MSE{col 67}= {res}    3.5537
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}      ln_co2{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2} -.158396{col 26}{space 2} .0660525{col 37}{space 1}   -2.40{col 46}{space 3}0.016{col 54}{space 4}-.2878698{col 67}{space 3}-.0289222
+{txt}{space 8}coal {c |}{col 14}{res}{space 2}-.2146011{col 26}{space 2} .1804653{col 37}{space 1}   -1.19{col 46}{space 3}0.234{col 54}{space 4} -.568343{col 67}{space 3} .1391408
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2} .1039873{col 26}{space 2} .1533105{col 37}{space 1}    0.68{col 46}{space 3}0.498{col 54}{space 4}-.1965266{col 67}{space 3} .4045012
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2}-.5569316{col 26}{space 2} .1545292{col 37}{space 1}   -3.60{col 46}{space 3}0.000{col 54}{space 4}-.8598344{col 67}{space 3}-.2540288
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2} .0012519{col 26}{space 2} .0006188{col 37}{space 1}    2.02{col 46}{space 3}0.043{col 54}{space 4} .0000389{col 67}{space 3} .0024649
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0016026{col 26}{space 2} .0008644{col 37}{space 1}    1.85{col 46}{space 3}0.064{col 54}{space 4}-.0000919{col 67}{space 3}  .003297
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0021671{col 26}{space 2} .0008015{col 37}{space 1}   -2.70{col 46}{space 3}0.007{col 54}{space 4}-.0037383{col 67}{space 3} -.000596
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.4082909{col 26}{space 2} .1216223{col 37}{space 1}   -3.36{col 46}{space 3}0.001{col 54}{space 4}-.6466907{col 67}{space 3}-.1698911
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2}-.2792316{col 26}{space 2} .1184778{col 37}{space 1}   -2.36{col 46}{space 3}0.018{col 54}{space 4}-.5114678{col 67}{space 3}-.0469953
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.4770767{col 26}{space 2} .1164344{col 37}{space 1}   -4.10{col 46}{space 3}0.000{col 54}{space 4}-.7053074{col 67}{space 3} -.248846
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-.5683299{col 26}{space 2} .1209196{col 37}{space 1}   -4.70{col 46}{space 3}0.000{col 54}{space 4}-.8053523{col 67}{space 3}-.3313074
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-.3511388{col 26}{space 2} .1186765{col 37}{space 1}   -2.96{col 46}{space 3}0.003{col 54}{space 4}-.5837643{col 67}{space 3}-.1185132
+{txt}{space 7}nerc2 {c |}{col 14}{res}{space 2}-.3939794{col 26}{space 2}  .935655{col 37}{space 1}   -0.42{col 46}{space 3}0.674{col 54}{space 4}-2.228018{col 67}{space 3}  1.44006
+{txt}{space 7}nerc3 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc4 {c |}{col 14}{res}{space 2}-.5761389{col 26}{space 2} .5361128{col 37}{space 1}   -1.07{col 46}{space 3}0.283{col 54}{space 4}-1.627009{col 67}{space 3} .4747311
+{txt}{space 7}nerc5 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc6 {c |}{col 14}{res}{space 2} 1.569314{col 26}{space 2} .5208992{col 37}{space 1}    3.01{col 46}{space 3}0.003{col 54}{space 4} .5482654{col 67}{space 3} 2.590363
+{txt}{space 7}nerc7 {c |}{col 14}{res}{space 2} .2352209{col 26}{space 2} .5050165{col 37}{space 1}    0.47{col 46}{space 3}0.641{col 54}{space 4}-.7546953{col 67}{space 3} 1.225137
+{txt}{space 7}nerc8 {c |}{col 14}{res}{space 2} .6225471{col 26}{space 2} .5046433{col 37}{space 1}    1.23{col 46}{space 3}0.217{col 54}{space 4}-.3666375{col 67}{space 3} 1.611732
+{txt}{space 7}nerc9 {c |}{col 14}{res}{space 2}  .185699{col 26}{space 2} .5020462{col 37}{space 1}    0.37{col 46}{space 3}0.711{col 54}{space 4}-.7983949{col 67}{space 3} 1.169793
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 9.854707{col 26}{space 2} .7686859{col 37}{space 1}   12.82{col 46}{space 3}0.000{col 54}{space 4} 8.347955{col 67}{space 3} 11.36146
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est1{txt} stored)
+
+{com}. eststo: areg ln_co2 ln_heat_rate coal nat_gas petrol chp own nameplate summer_cap winter_cap yr1-yr5 nerc2-nerc9, absorb(state) vce(robust)
+{p 0 6 2}{txt}note: nerc3 omitted because of collinearity{p_end}
+{p 0 6 2}note: nerc5 omitted because of collinearity{p_end}
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}    11,821
+{txt}Absorbed variable: {bf:state}{col 49}No. of categories{col 67}= {res}        51
+{txt}{col 49}F({res}  20{txt},{res}  11750{txt}){col 67}= {res}     25.47
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1662
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1612
+{txt}{col 49}Root MSE{col 67}= {res}    3.5231
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}      ln_co2{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2}  -.39948{col 26}{space 2} .0700771{col 37}{space 1}   -5.70{col 46}{space 3}0.000{col 54}{space 4}-.5368428{col 67}{space 3}-.2621173
+{txt}{space 8}coal {c |}{col 14}{res}{space 2}-.0501973{col 26}{space 2} .1779688{col 37}{space 1}   -0.28{col 46}{space 3}0.778{col 54}{space 4}-.3990457{col 67}{space 3} .2986511
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2} .3457677{col 26}{space 2} .1507003{col 37}{space 1}    2.29{col 46}{space 3}0.022{col 54}{space 4} .0503701{col 67}{space 3} .6411653
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2}-.2159128{col 26}{space 2} .1537544{col 37}{space 1}   -1.40{col 46}{space 3}0.160{col 54}{space 4}-.5172968{col 67}{space 3} .0854712
+{txt}{space 9}chp {c |}{col 14}{res}{space 2} 1.320403{col 26}{space 2} .0909332{col 37}{space 1}   14.52{col 46}{space 3}0.000{col 54}{space 4} 1.142159{col 67}{space 3} 1.498647
+{txt}{space 9}own {c |}{col 14}{res}{space 2}-.3478494{col 26}{space 2} .0805376{col 37}{space 1}   -4.32{col 46}{space 3}0.000{col 54}{space 4}-.5057164{col 67}{space 3}-.1899824
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2} .0016557{col 26}{space 2} .0006169{col 37}{space 1}    2.68{col 46}{space 3}0.007{col 54}{space 4} .0004465{col 67}{space 3} .0028649
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0011914{col 26}{space 2} .0008713{col 37}{space 1}    1.37{col 46}{space 3}0.172{col 54}{space 4}-.0005165{col 67}{space 3} .0028992
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0020335{col 26}{space 2}    .0008{col 37}{space 1}   -2.54{col 46}{space 3}0.011{col 54}{space 4}-.0036016{col 67}{space 3}-.0004654
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.2479803{col 26}{space 2} .1207716{col 37}{space 1}   -2.05{col 46}{space 3}0.040{col 54}{space 4}-.4847127{col 67}{space 3}-.0112479
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2}-.1255917{col 26}{space 2} .1176713{col 37}{space 1}   -1.07{col 46}{space 3}0.286{col 54}{space 4}-.3562469{col 67}{space 3} .1050635
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.3365138{col 26}{space 2} .1155172{col 37}{space 1}   -2.91{col 46}{space 3}0.004{col 54}{space 4}-.5629466{col 67}{space 3}-.1100809
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-.4430319{col 26}{space 2} .1204181{col 37}{space 1}   -3.68{col 46}{space 3}0.000{col 54}{space 4}-.6790714{col 67}{space 3}-.2069923
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-.2478019{col 26}{space 2}  .117939{col 37}{space 1}   -2.10{col 46}{space 3}0.036{col 54}{space 4}-.4789819{col 67}{space 3}-.0166218
+{txt}{space 7}nerc2 {c |}{col 14}{res}{space 2}-.8128989{col 26}{space 2} .9122304{col 37}{space 1}   -0.89{col 46}{space 3}0.373{col 54}{space 4}-2.601022{col 67}{space 3}  .975224
+{txt}{space 7}nerc3 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc4 {c |}{col 14}{res}{space 2}-.6318932{col 26}{space 2}  .529628{col 37}{space 1}   -1.19{col 46}{space 3}0.233{col 54}{space 4}-1.670052{col 67}{space 3} .4062656
+{txt}{space 7}nerc5 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc6 {c |}{col 14}{res}{space 2} 1.215612{col 26}{space 2} .5157306{col 37}{space 1}    2.36{col 46}{space 3}0.018{col 54}{space 4} .2046949{col 67}{space 3}  2.22653
+{txt}{space 7}nerc7 {c |}{col 14}{res}{space 2}-.1036126{col 26}{space 2} .4989184{col 37}{space 1}   -0.21{col 46}{space 3}0.835{col 54}{space 4}-1.081575{col 67}{space 3} .8743502
+{txt}{space 7}nerc8 {c |}{col 14}{res}{space 2} .5529553{col 26}{space 2} .4972671{col 37}{space 1}    1.11{col 46}{space 3}0.266{col 54}{space 4}-.4217707{col 67}{space 3} 1.527681
+{txt}{space 7}nerc9 {c |}{col 14}{res}{space 2} .0759325{col 26}{space 2} .4963885{col 37}{space 1}    0.15{col 46}{space 3}0.878{col 54}{space 4}-.8970714{col 67}{space 3} 1.048936
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 11.03061{col 26}{space 2} .7993261{col 37}{space 1}   13.80{col 46}{space 3}0.000{col 54}{space 4} 9.463797{col 67}{space 3} 12.59742
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est2{txt} stored)
+
+{com}. eststo: areg ln_co2 ln_heat_rate coal nat_gas petrol chp own nameplate summer_cap winter_cap yr1-yr5, absorb(nerc) vce(robust)
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}    11,821
+{txt}Absorbed variable: {bf:nerc}{col 49}No. of categories{col 67}= {res}        10
+{txt}{col 49}F({res}  14{txt},{res}  11797{txt}){col 67}= {res}     36.08
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1138
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1121
+{txt}{col 49}Root MSE{col 67}= {res}    3.6248
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}      ln_co2{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2}-.4030991{col 26}{space 2} .0681081{col 37}{space 1}   -5.92{col 46}{space 3}0.000{col 54}{space 4}-.5366021{col 67}{space 3}-.2695961
+{txt}{space 8}coal {c |}{col 14}{res}{space 2}-.2832566{col 26}{space 2} .1814688{col 37}{space 1}   -1.56{col 46}{space 3}0.119{col 54}{space 4}-.6389653{col 67}{space 3} .0724521
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2}  .174806{col 26}{space 2} .1552908{col 37}{space 1}    1.13{col 46}{space 3}0.260{col 54}{space 4}-.1295897{col 67}{space 3} .4792017
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2}-.4349733{col 26}{space 2} .1580505{col 37}{space 1}   -2.75{col 46}{space 3}0.006{col 54}{space 4}-.7447784{col 67}{space 3}-.1251681
+{txt}{space 9}chp {c |}{col 14}{res}{space 2} 1.440945{col 26}{space 2} .0890702{col 37}{space 1}   16.18{col 46}{space 3}0.000{col 54}{space 4} 1.266353{col 67}{space 3} 1.615538
+{txt}{space 9}own {c |}{col 14}{res}{space 2}-.4021825{col 26}{space 2} .0802432{col 37}{space 1}   -5.01{col 46}{space 3}0.000{col 54}{space 4}-.5594724{col 67}{space 3}-.2448926
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2} .0019692{col 26}{space 2} .0006207{col 37}{space 1}    3.17{col 46}{space 3}0.002{col 54}{space 4} .0007526{col 67}{space 3} .0031859
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0013288{col 26}{space 2} .0008747{col 37}{space 1}    1.52{col 46}{space 3}0.129{col 54}{space 4}-.0003857{col 67}{space 3} .0030434
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0024054{col 26}{space 2} .0007921{col 37}{space 1}   -3.04{col 46}{space 3}0.002{col 54}{space 4}-.0039581{col 67}{space 3}-.0008528
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.1660601{col 26}{space 2}  .122145{col 37}{space 1}   -1.36{col 46}{space 3}0.174{col 54}{space 4}-.4054844{col 67}{space 3} .0733642
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2}-.0681188{col 26}{space 2}  .118882{col 37}{space 1}   -0.57{col 46}{space 3}0.567{col 54}{space 4}-.3011472{col 67}{space 3} .1649095
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.2427108{col 26}{space 2} .1181982{col 37}{space 1}   -2.05{col 46}{space 3}0.040{col 54}{space 4}-.4743987{col 67}{space 3}-.0110229
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}   -.3251{col 26}{space 2} .1232502{col 37}{space 1}   -2.64{col 46}{space 3}0.008{col 54}{space 4}-.5666908{col 67}{space 3}-.0835092
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-.1685783{col 26}{space 2} .1207793{col 37}{space 1}   -1.40{col 46}{space 3}0.163{col 54}{space 4}-.4053257{col 67}{space 3} .0681691
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 11.34546{col 26}{space 2}  .699193{col 37}{space 1}   16.23{col 46}{space 3}0.000{col 54}{space 4}  9.97493{col 67}{space 3}   12.716
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est3{txt} stored)
+
+{com}. eststo: areg co2_rate ln_heat_rate coal nat_gas petrol nameplate summer_cap winter_cap yr1-yr5 nerc2-nerc9 if co2_rate < 232, absorb(state) vce(robust)
+{p 0 6 2}{txt}note: nerc3 omitted because of collinearity{p_end}
+{p 0 6 2}note: nerc5 omitted because of collinearity{p_end}
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}    11,221
+{txt}Absorbed variable: {bf:state}{col 49}No. of categories{col 67}= {res}        51
+{txt}{col 49}F({res}  18{txt},{res}  11152{txt}){col 67}= {res}     34.99
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1357
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1304
+{txt}{col 49}Root MSE{col 67}= {res}   25.3716
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}    co2_rate{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2} 3.835015{col 26}{space 2} .7294897{col 37}{space 1}    5.26{col 46}{space 3}0.000{col 54}{space 4} 2.405086{col 67}{space 3} 5.264944
+{txt}{space 8}coal {c |}{col 14}{res}{space 2} -6.20095{col 26}{space 2} 1.384547{col 37}{space 1}   -4.48{col 46}{space 3}0.000{col 54}{space 4}-8.914908{col 67}{space 3}-3.486993
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2}-.8653763{col 26}{space 2} 1.364705{col 37}{space 1}   -0.63{col 46}{space 3}0.526{col 54}{space 4}-3.540439{col 67}{space 3} 1.809687
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2} 14.74521{col 26}{space 2} 1.564119{col 37}{space 1}    9.43{col 46}{space 3}0.000{col 54}{space 4} 11.67926{col 67}{space 3} 17.81116
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2} .0042188{col 26}{space 2} .0046941{col 37}{space 1}    0.90{col 46}{space 3}0.369{col 54}{space 4}-.0049824{col 67}{space 3} .0134199
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0326091{col 26}{space 2} .0072968{col 37}{space 1}    4.47{col 46}{space 3}0.000{col 54}{space 4}  .018306{col 67}{space 3} .0469121
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0339534{col 26}{space 2} .0065059{col 37}{space 1}   -5.22{col 46}{space 3}0.000{col 54}{space 4}-.0467061{col 67}{space 3}-.0212007
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-3.386022{col 26}{space 2} .6624617{col 37}{space 1}   -5.11{col 46}{space 3}0.000{col 54}{space 4}-4.684564{col 67}{space 3} -2.08748
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2}-3.432853{col 26}{space 2} .6787744{col 37}{space 1}   -5.06{col 46}{space 3}0.000{col 54}{space 4}-4.763371{col 67}{space 3}-2.102335
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-4.345973{col 26}{space 2} .5998068{col 37}{space 1}   -7.25{col 46}{space 3}0.000{col 54}{space 4}  -5.5217{col 67}{space 3}-3.170245
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-2.491738{col 26}{space 2} .8492192{col 37}{space 1}   -2.93{col 46}{space 3}0.003{col 54}{space 4}-4.156358{col 67}{space 3}-.8271186
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-3.781494{col 26}{space 2} .6333641{col 37}{space 1}   -5.97{col 46}{space 3}0.000{col 54}{space 4}   -5.023{col 67}{space 3}-2.539989
+{txt}{space 7}nerc2 {c |}{col 14}{res}{space 2}-9.306353{col 26}{space 2} 9.196553{col 37}{space 1}   -1.01{col 46}{space 3}0.312{col 54}{space 4}-27.33322{col 67}{space 3} 8.720517
+{txt}{space 7}nerc3 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc4 {c |}{col 14}{res}{space 2}-12.32526{col 26}{space 2} 3.498827{col 37}{space 1}   -3.52{col 46}{space 3}0.000{col 54}{space 4}-19.18358{col 67}{space 3}-5.466945
+{txt}{space 7}nerc5 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc6 {c |}{col 14}{res}{space 2}-.0612176{col 26}{space 2} 3.261711{col 37}{space 1}   -0.02{col 46}{space 3}0.985{col 54}{space 4}-6.454747{col 67}{space 3} 6.332311
+{txt}{space 7}nerc7 {c |}{col 14}{res}{space 2} 4.119423{col 26}{space 2} 2.951112{col 37}{space 1}    1.40{col 46}{space 3}0.163{col 54}{space 4}-1.665278{col 67}{space 3} 9.904125
+{txt}{space 7}nerc8 {c |}{col 14}{res}{space 2} 7.965995{col 26}{space 2} 2.690673{col 37}{space 1}    2.96{col 46}{space 3}0.003{col 54}{space 4}   2.6918{col 67}{space 3} 13.24019
+{txt}{space 7}nerc9 {c |}{col 14}{res}{space 2}  1.06422{col 26}{space 2} 2.797866{col 37}{space 1}    0.38{col 46}{space 3}0.704{col 54}{space 4}-4.420091{col 67}{space 3} 6.548531
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-29.95783{col 26}{space 2} 7.742334{col 37}{space 1}   -3.87{col 46}{space 3}0.000{col 54}{space 4}-45.13418{col 67}{space 3}-14.78149
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est4{txt} stored)
+
+{com}. eststo: areg co2_rate ln_heat_rate coal nat_gas petrol chp own nameplate summer_cap winter_cap yr1-yr5 nerc2-nerc9 if co2_rate < 232, absorb(state) vce(robust)
+{p 0 6 2}{txt}note: nerc3 omitted because of collinearity{p_end}
+{p 0 6 2}note: nerc5 omitted because of collinearity{p_end}
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}    11,221
+{txt}Absorbed variable: {bf:state}{col 49}No. of categories{col 67}= {res}        51
+{txt}{col 49}F({res}  20{txt},{res}  11150{txt}){col 67}= {res}     31.49
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1357
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1303
+{txt}{col 49}Root MSE{col 67}= {res}   25.3738
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}    co2_rate{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2} 3.870022{col 26}{space 2} .7187552{col 37}{space 1}    5.38{col 46}{space 3}0.000{col 54}{space 4} 2.461135{col 67}{space 3} 5.278909
+{txt}{space 8}coal {c |}{col 14}{res}{space 2}-6.239834{col 26}{space 2} 1.395314{col 37}{space 1}   -4.47{col 46}{space 3}0.000{col 54}{space 4}-8.974896{col 67}{space 3}-3.504772
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2}-.8969769{col 26}{space 2} 1.377041{col 37}{space 1}   -0.65{col 46}{space 3}0.515{col 54}{space 4}-3.596221{col 67}{space 3} 1.802267
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2} 14.69559{col 26}{space 2} 1.583892{col 37}{space 1}    9.28{col 46}{space 3}0.000{col 54}{space 4} 11.59088{col 67}{space 3}  17.8003
+{txt}{space 9}chp {c |}{col 14}{res}{space 2}-.1484419{col 26}{space 2} .5661922{col 37}{space 1}   -0.26{col 46}{space 3}0.793{col 54}{space 4}-1.258279{col 67}{space 3} .9613949
+{txt}{space 9}own {c |}{col 14}{res}{space 2} -.130926{col 26}{space 2}  .546518{col 37}{space 1}   -0.24{col 46}{space 3}0.811{col 54}{space 4}-1.202198{col 67}{space 3} .9403459
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2} .0042534{col 26}{space 2} .0046819{col 37}{space 1}    0.91{col 46}{space 3}0.364{col 54}{space 4} -.004924{col 67}{space 3} .0134308
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0324882{col 26}{space 2} .0072933{col 37}{space 1}    4.45{col 46}{space 3}0.000{col 54}{space 4}  .018192{col 67}{space 3} .0467845
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0339074{col 26}{space 2} .0065114{col 37}{space 1}   -5.21{col 46}{space 3}0.000{col 54}{space 4}-.0466708{col 67}{space 3} -.021144
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-3.386685{col 26}{space 2} .6686626{col 37}{space 1}   -5.06{col 46}{space 3}0.000{col 54}{space 4}-4.697382{col 67}{space 3}-2.075988
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2}-3.432841{col 26}{space 2} .6822455{col 37}{space 1}   -5.03{col 46}{space 3}0.000{col 54}{space 4}-4.770163{col 67}{space 3} -2.09552
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-4.344741{col 26}{space 2}  .608288{col 37}{space 1}   -7.14{col 46}{space 3}0.000{col 54}{space 4}-5.537093{col 67}{space 3}-3.152389
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-2.487875{col 26}{space 2} .8549488{col 37}{space 1}   -2.91{col 46}{space 3}0.004{col 54}{space 4}-4.163726{col 67}{space 3}-.8120239
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-3.776962{col 26}{space 2}  .635886{col 37}{space 1}   -5.94{col 46}{space 3}0.000{col 54}{space 4}-5.023411{col 67}{space 3}-2.530513
+{txt}{space 7}nerc2 {c |}{col 14}{res}{space 2}-9.231978{col 26}{space 2} 9.186588{col 37}{space 1}   -1.00{col 46}{space 3}0.315{col 54}{space 4}-27.23931{col 67}{space 3} 8.775358
+{txt}{space 7}nerc3 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc4 {c |}{col 14}{res}{space 2}-12.29509{col 26}{space 2} 3.497167{col 37}{space 1}   -3.52{col 46}{space 3}0.000{col 54}{space 4}-19.15016{col 67}{space 3}-5.440027
+{txt}{space 7}nerc5 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc6 {c |}{col 14}{res}{space 2} .0009048{col 26}{space 2} 3.271924{col 37}{space 1}    0.00{col 46}{space 3}1.000{col 54}{space 4}-6.412645{col 67}{space 3} 6.414454
+{txt}{space 7}nerc7 {c |}{col 14}{res}{space 2} 4.176299{col 26}{space 2} 2.953845{col 37}{space 1}    1.41{col 46}{space 3}0.157{col 54}{space 4}-1.613759{col 67}{space 3} 9.966357
+{txt}{space 7}nerc8 {c |}{col 14}{res}{space 2} 7.985935{col 26}{space 2} 2.693755{col 37}{space 1}    2.96{col 46}{space 3}0.003{col 54}{space 4} 2.705699{col 67}{space 3} 13.26617
+{txt}{space 7}nerc9 {c |}{col 14}{res}{space 2} 1.117759{col 26}{space 2} 2.818194{col 37}{space 1}    0.40{col 46}{space 3}0.692{col 54}{space 4}-4.406399{col 67}{space 3} 6.641917
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-29.83752{col 26}{space 2} 7.719783{col 37}{space 1}   -3.87{col 46}{space 3}0.000{col 54}{space 4}-44.96966{col 67}{space 3}-14.70538
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est5{txt} stored)
+
+{com}. eststo: areg co2_rate ln_heat_rate coal nat_gas petrol chp own nameplate summer_cap winter_cap yr1-yr5 if co2_rate < 232, absorb(nerc) vce(robust)
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}    11,221
+{txt}Absorbed variable: {bf:nerc}{col 49}No. of categories{col 67}= {res}        10
+{txt}{col 49}F({res}  14{txt},{res}  11197{txt}){col 67}= {res}     45.14
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1069
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1051
+{txt}{col 49}Root MSE{col 67}= {res}   25.7391
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}    co2_rate{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2} 4.513465{col 26}{space 2} .7117544{col 37}{space 1}    6.34{col 46}{space 3}0.000{col 54}{space 4} 3.118301{col 67}{space 3} 5.908629
+{txt}{space 8}coal {c |}{col 14}{res}{space 2}-4.705826{col 26}{space 2} 1.378839{col 37}{space 1}   -3.41{col 46}{space 3}0.001{col 54}{space 4}-7.408593{col 67}{space 3} -2.00306
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2}-1.095849{col 26}{space 2} 1.404194{col 37}{space 1}   -0.78{col 46}{space 3}0.435{col 54}{space 4}-3.848315{col 67}{space 3} 1.656618
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2} 14.28764{col 26}{space 2}  1.58606{col 37}{space 1}    9.01{col 46}{space 3}0.000{col 54}{space 4} 11.17868{col 67}{space 3}  17.3966
+{txt}{space 9}chp {c |}{col 14}{res}{space 2}-.4597972{col 26}{space 2} .5474303{col 37}{space 1}   -0.84{col 46}{space 3}0.401{col 54}{space 4}-1.532857{col 67}{space 3} .6132626
+{txt}{space 9}own {c |}{col 14}{res}{space 2} -.086033{col 26}{space 2} .5446853{col 37}{space 1}   -0.16{col 46}{space 3}0.874{col 54}{space 4}-1.153712{col 67}{space 3} .9816459
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2}  .006919{col 26}{space 2} .0047601{col 37}{space 1}    1.45{col 46}{space 3}0.146{col 54}{space 4}-.0024116{col 67}{space 3} .0162496
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0223632{col 26}{space 2} .0072041{col 37}{space 1}    3.10{col 46}{space 3}0.002{col 54}{space 4}  .008242{col 67}{space 3} .0364845
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0264454{col 26}{space 2} .0059463{col 37}{space 1}   -4.45{col 46}{space 3}0.000{col 54}{space 4}-.0381013{col 67}{space 3}-.0147896
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-4.165532{col 26}{space 2} .6922944{col 37}{space 1}   -6.02{col 46}{space 3}0.000{col 54}{space 4}-5.522551{col 67}{space 3}-2.808513
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2} -4.30492{col 26}{space 2} .7019626{col 37}{space 1}   -6.13{col 46}{space 3}0.000{col 54}{space 4} -5.68089{col 67}{space 3} -2.92895
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-5.139669{col 26}{space 2}   .63114{col 37}{space 1}   -8.14{col 46}{space 3}0.000{col 54}{space 4}-6.376814{col 67}{space 3}-3.902524
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-3.006283{col 26}{space 2} .8859964{col 37}{space 1}   -3.39{col 46}{space 3}0.001{col 54}{space 4}-4.742992{col 67}{space 3}-1.269574
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-4.482262{col 26}{space 2} .6648593{col 37}{space 1}   -6.74{col 46}{space 3}0.000{col 54}{space 4}-5.785503{col 67}{space 3}-3.179021
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-35.54765{col 26}{space 2} 7.399148{col 37}{space 1}   -4.80{col 46}{space 3}0.000{col 54}{space 4}-50.05128{col 67}{space 3}-21.04401
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est6{txt} stored)
+
+{com}. 
+. esttab using co2.tex, title(Carbon dioxide emissions) se replace
+{res}{txt}(output written to {browse  `"co2.tex"'})
+
+{com}. 
+. eststo clear
+{txt}
+{com}. 
+. * Scatter plot diagram in which errors are averaged across 20 separate bins
+. 
+. binscatter ln_co2 ln_heat_rate if ln_heat_rate < 10.5, controls(summer_cap coal) name(ln_co2_plot)
+{res}{txt}
+{com}. 
+. 
+. * Scatter plot diagram in which errors are averaged across 20 separate bins
+. 
+. binscatter co2_rate ln_heat_rate if ln_heat_rate < 11, controls(summer_cap coal) name(co2_rate_plot)
+{res}{txt}
+{com}. 
+. 
+. /* ----------------- */
+. /* Methane Emissions */
+. /* ----------------- */
+. 
+. * Panel data regression of the level of co2 on the heat rate and other control variables; absorbing on state-level effects
+. 
+. eststo: areg ln_methane ln_heat_rate coal nat_gas petrol nameplate summer_cap winter_cap yr1-yr5 nerc2-nerc9, absorb(state) vce(robust)
+{p 0 6 2}{txt}note: nerc3 omitted because of collinearity{p_end}
+{p 0 6 2}note: nerc5 omitted because of collinearity{p_end}
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}     9,505
+{txt}Absorbed variable: {bf:state}{col 49}No. of categories{col 67}= {res}        50
+{txt}{col 49}F({res}  18{txt},{res}   9437{txt}){col 67}= {res}     23.41
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1574
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1514
+{txt}{col 49}Root MSE{col 67}= {res}    2.7258
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}  ln_methane{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2}-.5088971{col 26}{space 2} .0642421{col 37}{space 1}   -7.92{col 46}{space 3}0.000{col 54}{space 4}-.6348254{col 67}{space 3}-.3829688
+{txt}{space 8}coal {c |}{col 14}{res}{space 2}  .415854{col 26}{space 2} .1553879{col 37}{space 1}    2.68{col 46}{space 3}0.007{col 54}{space 4} .1112602{col 67}{space 3} .7204478
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2}-.1821534{col 26}{space 2} .1274854{col 37}{space 1}   -1.43{col 46}{space 3}0.153{col 54}{space 4}-.4320523{col 67}{space 3} .0677455
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2}-.1678699{col 26}{space 2} .1298511{col 37}{space 1}   -1.29{col 46}{space 3}0.196{col 54}{space 4} -.422406{col 67}{space 3} .0866661
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2}-.0006438{col 26}{space 2}  .000567{col 37}{space 1}   -1.14{col 46}{space 3}0.256{col 54}{space 4}-.0017553{col 67}{space 3} .0004678
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0051229{col 26}{space 2} .0008098{col 37}{space 1}    6.33{col 46}{space 3}0.000{col 54}{space 4} .0035356{col 67}{space 3} .0067103
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0036442{col 26}{space 2} .0007209{col 37}{space 1}   -5.06{col 46}{space 3}0.000{col 54}{space 4}-.0050573{col 67}{space 3}-.0022311
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.1749796{col 26}{space 2} .1020426{col 37}{space 1}   -1.71{col 46}{space 3}0.086{col 54}{space 4}-.3750051{col 67}{space 3}  .025046
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2}-.1051776{col 26}{space 2} .1001757{col 37}{space 1}   -1.05{col 46}{space 3}0.294{col 54}{space 4}-.3015436{col 67}{space 3} .0911884
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.3753422{col 26}{space 2} .0972628{col 37}{space 1}   -3.86{col 46}{space 3}0.000{col 54}{space 4}-.5659982{col 67}{space 3}-.1846862
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2} -.187877{col 26}{space 2} .1020818{col 37}{space 1}   -1.84{col 46}{space 3}0.066{col 54}{space 4}-.3879793{col 67}{space 3} .0122253
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-.1527597{col 26}{space 2} .1015071{col 37}{space 1}   -1.50{col 46}{space 3}0.132{col 54}{space 4}-.3517354{col 67}{space 3}  .046216
+{txt}{space 7}nerc2 {c |}{col 14}{res}{space 2}-1.371095{col 26}{space 2} .6090739{col 37}{space 1}   -2.25{col 46}{space 3}0.024{col 54}{space 4}-2.565011{col 67}{space 3}-.1771793
+{txt}{space 7}nerc3 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc4 {c |}{col 14}{res}{space 2}-.8477857{col 26}{space 2} .4254436{col 37}{space 1}   -1.99{col 46}{space 3}0.046{col 54}{space 4}-1.681747{col 67}{space 3}-.0138246
+{txt}{space 7}nerc5 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc6 {c |}{col 14}{res}{space 2} .7228997{col 26}{space 2} .3969613{col 37}{space 1}    1.82{col 46}{space 3}0.069{col 54}{space 4}-.0552299{col 67}{space 3} 1.501029
+{txt}{space 7}nerc7 {c |}{col 14}{res}{space 2} .1904281{col 26}{space 2} .3729362{col 37}{space 1}    0.51{col 46}{space 3}0.610{col 54}{space 4}-.5406072{col 67}{space 3} .9214633
+{txt}{space 7}nerc8 {c |}{col 14}{res}{space 2}-.0065127{col 26}{space 2} .3681323{col 37}{space 1}   -0.02{col 46}{space 3}0.986{col 54}{space 4}-.7281312{col 67}{space 3} .7151059
+{txt}{space 7}nerc9 {c |}{col 14}{res}{space 2} -.450436{col 26}{space 2} .3651656{col 37}{space 1}   -1.23{col 46}{space 3}0.217{col 54}{space 4}-1.166239{col 67}{space 3} .2653672
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 7.424784{col 26}{space 2} .7025498{col 37}{space 1}   10.57{col 46}{space 3}0.000{col 54}{space 4} 6.047635{col 67}{space 3} 8.801933
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est1{txt} stored)
+
+{com}. eststo: areg ln_methane ln_heat_rate coal nat_gas petrol chp own nameplate summer_cap winter_cap yr1-yr5 nerc2-nerc9, absorb(state) vce(robust)
+{p 0 6 2}{txt}note: nerc3 omitted because of collinearity{p_end}
+{p 0 6 2}note: nerc5 omitted because of collinearity{p_end}
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}     9,505
+{txt}Absorbed variable: {bf:state}{col 49}No. of categories{col 67}= {res}        50
+{txt}{col 49}F({res}  20{txt},{res}   9435{txt}){col 67}= {res}     28.47
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1709
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1648
+{txt}{col 49}Root MSE{col 67}= {res}    2.7042
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}  ln_methane{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2}-.6646254{col 26}{space 2} .0718023{col 37}{space 1}   -9.26{col 46}{space 3}0.000{col 54}{space 4}-.8053733{col 67}{space 3}-.5238775
+{txt}{space 8}coal {c |}{col 14}{res}{space 2} .5202007{col 26}{space 2} .1549237{col 37}{space 1}    3.36{col 46}{space 3}0.001{col 54}{space 4} .2165168{col 67}{space 3} .8238846
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2}-.0083957{col 26}{space 2} .1268284{col 37}{space 1}   -0.07{col 46}{space 3}0.947{col 54}{space 4}-.2570068{col 67}{space 3} .2402153
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2} .0657606{col 26}{space 2} .1307199{col 37}{space 1}    0.50{col 46}{space 3}0.615{col 54}{space 4}-.1904786{col 67}{space 3} .3219997
+{txt}{space 9}chp {c |}{col 14}{res}{space 2} .8542294{col 26}{space 2}  .074943{col 37}{space 1}   11.40{col 46}{space 3}0.000{col 54}{space 4} .7073249{col 67}{space 3} 1.001134
+{txt}{space 9}own {c |}{col 14}{res}{space 2}-.4547389{col 26}{space 2} .0684423{col 37}{space 1}   -6.64{col 46}{space 3}0.000{col 54}{space 4}-.5889006{col 67}{space 3}-.3205772
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2}-.0002921{col 26}{space 2} .0005662{col 37}{space 1}   -0.52{col 46}{space 3}0.606{col 54}{space 4} -.001402{col 67}{space 3} .0008178
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0047921{col 26}{space 2} .0008194{col 37}{space 1}    5.85{col 46}{space 3}0.000{col 54}{space 4} .0031859{col 67}{space 3} .0063983
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0035966{col 26}{space 2}  .000725{col 37}{space 1}   -4.96{col 46}{space 3}0.000{col 54}{space 4}-.0050178{col 67}{space 3}-.0021754
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.0514696{col 26}{space 2} .1011581{col 37}{space 1}   -0.51{col 46}{space 3}0.611{col 54}{space 4}-.2497613{col 67}{space 3} .1468221
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2} .0145076{col 26}{space 2} .0991678{col 37}{space 1}    0.15{col 46}{space 3}0.884{col 54}{space 4}-.1798826{col 67}{space 3} .2088978
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2} -.268826{col 26}{space 2} .0962597{col 37}{space 1}   -2.79{col 46}{space 3}0.005{col 54}{space 4}-.4575158{col 67}{space 3}-.0801361
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-.0893426{col 26}{space 2} .1017274{col 37}{space 1}   -0.88{col 46}{space 3}0.380{col 54}{space 4}-.2887503{col 67}{space 3} .1100651
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-.0744098{col 26}{space 2} .1009254{col 37}{space 1}   -0.74{col 46}{space 3}0.461{col 54}{space 4}-.2722454{col 67}{space 3} .1234257
+{txt}{space 7}nerc2 {c |}{col 14}{res}{space 2}-1.570553{col 26}{space 2} .5959872{col 37}{space 1}   -2.64{col 46}{space 3}0.008{col 54}{space 4}-2.738816{col 67}{space 3}-.4022894
+{txt}{space 7}nerc3 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc4 {c |}{col 14}{res}{space 2}-.7861299{col 26}{space 2} .4149904{col 37}{space 1}   -1.89{col 46}{space 3}0.058{col 54}{space 4}-1.599601{col 67}{space 3} .0273408
+{txt}{space 7}nerc5 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc6 {c |}{col 14}{res}{space 2} .5290892{col 26}{space 2} .3867344{col 37}{space 1}    1.37{col 46}{space 3}0.171{col 54}{space 4}-.2289936{col 67}{space 3} 1.287172
+{txt}{space 7}nerc7 {c |}{col 14}{res}{space 2}-.0024093{col 26}{space 2} .3622983{col 37}{space 1}   -0.01{col 46}{space 3}0.995{col 54}{space 4}-.7125919{col 67}{space 3} .7077734
+{txt}{space 7}nerc8 {c |}{col 14}{res}{space 2}-.0265829{col 26}{space 2} .3562797{col 37}{space 1}   -0.07{col 46}{space 3}0.941{col 54}{space 4}-.7249678{col 67}{space 3}  .671802
+{txt}{space 7}nerc9 {c |}{col 14}{res}{space 2}-.4683876{col 26}{space 2} .3545045{col 37}{space 1}   -1.32{col 46}{space 3}0.186{col 54}{space 4}-1.163293{col 67}{space 3} .2265177
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 8.575699{col 26}{space 2} .7550411{col 37}{space 1}   11.36{col 46}{space 3}0.000{col 54}{space 4} 7.095655{col 67}{space 3} 10.05574
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est2{txt} stored)
+
+{com}. eststo: areg ln_methane ln_heat_rate coal nat_gas petrol chp own nameplate summer_cap winter_cap yr1-yr5, absorb(nerc) vce(robust)
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}     9,505
+{txt}Absorbed variable: {bf:nerc}{col 49}No. of categories{col 67}= {res}        10
+{txt}{col 49}F({res}  14{txt},{res}   9481{txt}){col 67}= {res}     39.72
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1111
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1090
+{txt}{col 49}Root MSE{col 67}= {res}    2.7931
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}  ln_methane{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2}-.6493431{col 26}{space 2} .0677669{col 37}{space 1}   -9.58{col 46}{space 3}0.000{col 54}{space 4}-.7821807{col 67}{space 3}-.5165056
+{txt}{space 8}coal {c |}{col 14}{res}{space 2} .5559427{col 26}{space 2} .1569939{col 37}{space 1}    3.54{col 46}{space 3}0.000{col 54}{space 4}  .248201{col 67}{space 3} .8636845
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2}-.1212767{col 26}{space 2}  .129693{col 37}{space 1}   -0.94{col 46}{space 3}0.350{col 54}{space 4}-.3755028{col 67}{space 3} .1329494
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2} .0387357{col 26}{space 2} .1341825{col 37}{space 1}    0.29{col 46}{space 3}0.773{col 54}{space 4}-.2242907{col 67}{space 3} .3017621
+{txt}{space 9}chp {c |}{col 14}{res}{space 2}  .938121{col 26}{space 2} .0732628{col 37}{space 1}   12.80{col 46}{space 3}0.000{col 54}{space 4} .7945103{col 67}{space 3} 1.081732
+{txt}{space 9}own {c |}{col 14}{res}{space 2}-.4683011{col 26}{space 2} .0679867{col 37}{space 1}   -6.89{col 46}{space 3}0.000{col 54}{space 4}-.6015696{col 67}{space 3}-.3350326
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2} .0002327{col 26}{space 2} .0005708{col 37}{space 1}    0.41{col 46}{space 3}0.684{col 54}{space 4}-.0008862{col 67}{space 3} .0013517
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0041564{col 26}{space 2} .0008206{col 37}{space 1}    5.07{col 46}{space 3}0.000{col 54}{space 4} .0025479{col 67}{space 3} .0057649
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0034684{col 26}{space 2} .0007296{col 37}{space 1}   -4.75{col 46}{space 3}0.000{col 54}{space 4}-.0048985{col 67}{space 3}-.0020384
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.0991304{col 26}{space 2} .1020681{col 37}{space 1}   -0.97{col 46}{space 3}0.331{col 54}{space 4}-.2992057{col 67}{space 3} .1009449
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2}-.0422518{col 26}{space 2} .0994469{col 37}{space 1}   -0.42{col 46}{space 3}0.671{col 54}{space 4} -.237189{col 67}{space 3} .1526855
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.2925641{col 26}{space 2} .0980598{col 37}{space 1}   -2.98{col 46}{space 3}0.003{col 54}{space 4}-.4847823{col 67}{space 3}-.1003458
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-.0927205{col 26}{space 2} .1052198{col 37}{space 1}   -0.88{col 46}{space 3}0.378{col 54}{space 4}-.2989738{col 67}{space 3} .1135328
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2} -.110049{col 26}{space 2} .1035587{col 37}{space 1}   -1.06{col 46}{space 3}0.288{col 54}{space 4}-.3130462{col 67}{space 3} .0929483
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 8.361987{col 26}{space 2} .6791995{col 37}{space 1}   12.31{col 46}{space 3}0.000{col 54}{space 4}  7.03061{col 67}{space 3} 9.693363
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est3{txt} stored)
+
+{com}. eststo: areg methane_rate ln_heat_rate coal nat_gas petrol nameplate summer_cap winter_cap yr1-yr5 nerc2-nerc9 if methane_rate < 1, absorb(state) vce(robust)
+{p 0 6 2}{txt}note: nerc3 omitted because of collinearity{p_end}
+{p 0 6 2}note: nerc5 omitted because of collinearity{p_end}
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}     9,188
+{txt}Absorbed variable: {bf:state}{col 49}No. of categories{col 67}= {res}        50
+{txt}{col 49}F({res}  18{txt},{res}   9120{txt}){col 67}= {res}     26.22
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1435
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1372
+{txt}{col 49}Root MSE{col 67}= {res}    0.0963
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}methane_rate{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2}-.0013948{col 26}{space 2} .0022851{col 37}{space 1}   -0.61{col 46}{space 3}0.542{col 54}{space 4}-.0058742{col 67}{space 3} .0030846
+{txt}{space 8}coal {c |}{col 14}{res}{space 2}-.0229957{col 26}{space 2}  .005087{col 37}{space 1}   -4.52{col 46}{space 3}0.000{col 54}{space 4}-.0329673{col 67}{space 3} -.013024
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2}-.0034854{col 26}{space 2} .0047412{col 37}{space 1}   -0.74{col 46}{space 3}0.462{col 54}{space 4}-.0127792{col 67}{space 3} .0058084
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2} .0690255{col 26}{space 2} .0060061{col 37}{space 1}   11.49{col 46}{space 3}0.000{col 54}{space 4} .0572523{col 67}{space 3} .0807988
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2}-.0000353{col 26}{space 2} .0000214{col 37}{space 1}   -1.65{col 46}{space 3}0.100{col 54}{space 4}-.0000773{col 67}{space 3} 6.73e-06
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0001361{col 26}{space 2} .0000255{col 37}{space 1}    5.34{col 46}{space 3}0.000{col 54}{space 4} .0000862{col 67}{space 3}  .000186
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0000876{col 26}{space 2} .0000244{col 37}{space 1}   -3.59{col 46}{space 3}0.000{col 54}{space 4}-.0001355{col 67}{space 3}-.0000398
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.0080421{col 26}{space 2} .0027458{col 37}{space 1}   -2.93{col 46}{space 3}0.003{col 54}{space 4}-.0134245{col 67}{space 3}-.0026598
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2} -.008965{col 26}{space 2} .0026409{col 37}{space 1}   -3.39{col 46}{space 3}0.001{col 54}{space 4}-.0141418{col 67}{space 3}-.0037883
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.0090568{col 26}{space 2} .0027739{col 37}{space 1}   -3.26{col 46}{space 3}0.001{col 54}{space 4}-.0144943{col 67}{space 3}-.0036193
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-.0011232{col 26}{space 2} .0039081{col 37}{space 1}   -0.29{col 46}{space 3}0.774{col 54}{space 4} -.008784{col 67}{space 3} .0065376
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-.0092054{col 26}{space 2} .0027205{col 37}{space 1}   -3.38{col 46}{space 3}0.001{col 54}{space 4}-.0145382{col 67}{space 3}-.0038727
+{txt}{space 7}nerc2 {c |}{col 14}{res}{space 2}-.0430991{col 26}{space 2} .0182268{col 37}{space 1}   -2.36{col 46}{space 3}0.018{col 54}{space 4}-.0788277{col 67}{space 3}-.0073705
+{txt}{space 7}nerc3 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc4 {c |}{col 14}{res}{space 2}-.0450353{col 26}{space 2} .0170286{col 37}{space 1}   -2.64{col 46}{space 3}0.008{col 54}{space 4}-.0784152{col 67}{space 3}-.0116553
+{txt}{space 7}nerc5 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc6 {c |}{col 14}{res}{space 2}-.0260579{col 26}{space 2} .0165796{col 37}{space 1}   -1.57{col 46}{space 3}0.116{col 54}{space 4}-.0585576{col 67}{space 3} .0064418
+{txt}{space 7}nerc7 {c |}{col 14}{res}{space 2}-.0287583{col 26}{space 2} .0160792{col 37}{space 1}   -1.79{col 46}{space 3}0.074{col 54}{space 4}-.0602772{col 67}{space 3} .0027606
+{txt}{space 7}nerc8 {c |}{col 14}{res}{space 2}-.0301077{col 26}{space 2}  .015513{col 37}{space 1}   -1.94{col 46}{space 3}0.052{col 54}{space 4}-.0605166{col 67}{space 3} .0003012
+{txt}{space 7}nerc9 {c |}{col 14}{res}{space 2}-.0402047{col 26}{space 2} .0169873{col 37}{space 1}   -2.37{col 46}{space 3}0.018{col 54}{space 4}-.0735035{col 67}{space 3}-.0069059
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0521233{col 26}{space 2} .0268061{col 37}{space 1}    1.94{col 46}{space 3}0.052{col 54}{space 4}-.0004227{col 67}{space 3} .1046693
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est4{txt} stored)
+
+{com}. eststo: areg methane_rate ln_heat_rate coal nat_gas petrol chp own nameplate summer_cap winter_cap yr1-yr5 nerc2-nerc9 if methane_rate < 1, absorb(state) vce(robust)
+{p 0 6 2}{txt}note: nerc3 omitted because of collinearity{p_end}
+{p 0 6 2}note: nerc5 omitted because of collinearity{p_end}
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}     9,188
+{txt}Absorbed variable: {bf:state}{col 49}No. of categories{col 67}= {res}        50
+{txt}{col 49}F({res}  20{txt},{res}   9118{txt}){col 67}= {res}     23.82
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1440
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1375
+{txt}{col 49}Root MSE{col 67}= {res}    0.0963
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}methane_rate{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2}-.0013056{col 26}{space 2} .0023788{col 37}{space 1}   -0.55{col 46}{space 3}0.583{col 54}{space 4}-.0059687{col 67}{space 3} .0033575
+{txt}{space 8}coal {c |}{col 14}{res}{space 2}-.0234363{col 26}{space 2} .0051481{col 37}{space 1}   -4.55{col 46}{space 3}0.000{col 54}{space 4}-.0335277{col 67}{space 3}-.0133448
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2} -.003427{col 26}{space 2} .0048158{col 37}{space 1}   -0.71{col 46}{space 3}0.477{col 54}{space 4} -.012867{col 67}{space 3} .0060131
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2}  .068887{col 26}{space 2} .0061523{col 37}{space 1}   11.20{col 46}{space 3}0.000{col 54}{space 4}  .056827{col 67}{space 3} .0809469
+{txt}{space 9}chp {c |}{col 14}{res}{space 2}  .000545{col 26}{space 2} .0026416{col 37}{space 1}    0.21{col 46}{space 3}0.837{col 54}{space 4}-.0046331{col 67}{space 3} .0057231
+{txt}{space 9}own {c |}{col 14}{res}{space 2}-.0053811{col 26}{space 2} .0023226{col 37}{space 1}   -2.32{col 46}{space 3}0.021{col 54}{space 4} -.009934{col 67}{space 3}-.0008282
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2}-.0000332{col 26}{space 2} .0000214{col 37}{space 1}   -1.55{col 46}{space 3}0.121{col 54}{space 4}-.0000752{col 67}{space 3} 8.74e-06
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0001318{col 26}{space 2} .0000254{col 37}{space 1}    5.19{col 46}{space 3}0.000{col 54}{space 4}  .000082{col 67}{space 3} .0001815
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0000859{col 26}{space 2} .0000243{col 37}{space 1}   -3.53{col 46}{space 3}0.000{col 54}{space 4}-.0001337{col 67}{space 3}-.0000382
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.0075064{col 26}{space 2}  .002726{col 37}{space 1}   -2.75{col 46}{space 3}0.006{col 54}{space 4}  -.01285{col 67}{space 3}-.0021627
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2}-.0084327{col 26}{space 2} .0026247{col 37}{space 1}   -3.21{col 46}{space 3}0.001{col 54}{space 4}-.0135778{col 67}{space 3}-.0032877
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.0085122{col 26}{space 2} .0027768{col 37}{space 1}   -3.07{col 46}{space 3}0.002{col 54}{space 4}-.0139553{col 67}{space 3} -.003069
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-.0005338{col 26}{space 2} .0038984{col 37}{space 1}   -0.14{col 46}{space 3}0.891{col 54}{space 4}-.0081755{col 67}{space 3} .0071078
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-.0086695{col 26}{space 2} .0026979{col 37}{space 1}   -3.21{col 46}{space 3}0.001{col 54}{space 4} -.013958{col 67}{space 3}-.0033809
+{txt}{space 7}nerc2 {c |}{col 14}{res}{space 2}-.0421389{col 26}{space 2} .0183087{col 37}{space 1}   -2.30{col 46}{space 3}0.021{col 54}{space 4}-.0780281{col 67}{space 3}-.0062497
+{txt}{space 7}nerc3 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc4 {c |}{col 14}{res}{space 2}-.0438906{col 26}{space 2} .0170442{col 37}{space 1}   -2.58{col 46}{space 3}0.010{col 54}{space 4}-.0773009{col 67}{space 3}-.0104802
+{txt}{space 7}nerc5 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc6 {c |}{col 14}{res}{space 2}-.0254478{col 26}{space 2} .0166386{col 37}{space 1}   -1.53{col 46}{space 3}0.126{col 54}{space 4}-.0580633{col 67}{space 3} .0071676
+{txt}{space 7}nerc7 {c |}{col 14}{res}{space 2}-.0281035{col 26}{space 2} .0161332{col 37}{space 1}   -1.74{col 46}{space 3}0.082{col 54}{space 4}-.0597283{col 67}{space 3} .0035212
+{txt}{space 7}nerc8 {c |}{col 14}{res}{space 2}-.0294702{col 26}{space 2} .0155761{col 37}{space 1}   -1.89{col 46}{space 3}0.059{col 54}{space 4}-.0600029{col 67}{space 3} .0010624
+{txt}{space 7}nerc9 {c |}{col 14}{res}{space 2}-.0388161{col 26}{space 2}  .017136{col 37}{space 1}   -2.27{col 46}{space 3}0.024{col 54}{space 4}-.0724065{col 67}{space 3}-.0052257
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0606631{col 26}{space 2} .0271273{col 37}{space 1}    2.24{col 46}{space 3}0.025{col 54}{space 4} .0074876{col 67}{space 3} .1138386
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est5{txt} stored)
+
+{com}. eststo: areg methane_rate ln_heat_rate coal nat_gas petrol chp own nameplate summer_cap winter_cap yr1-yr5 if methane_rate < 1, absorb(nerc) vce(robust)
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}     9,188
+{txt}Absorbed variable: {bf:nerc}{col 49}No. of categories{col 67}= {res}        10
+{txt}{col 49}F({res}  14{txt},{res}   9164{txt}){col 67}= {res}     33.43
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1138
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1116
+{txt}{col 49}Root MSE{col 67}= {res}    0.0977
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}methane_rate{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2} .0021901{col 26}{space 2} .0022936{col 37}{space 1}    0.95{col 46}{space 3}0.340{col 54}{space 4}-.0023059{col 67}{space 3} .0066861
+{txt}{space 8}coal {c |}{col 14}{res}{space 2}-.0126688{col 26}{space 2} .0049404{col 37}{space 1}   -2.56{col 46}{space 3}0.010{col 54}{space 4}-.0223532{col 67}{space 3}-.0029845
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2}-.0028425{col 26}{space 2} .0048159{col 37}{space 1}   -0.59{col 46}{space 3}0.555{col 54}{space 4}-.0122827{col 67}{space 3} .0065977
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2} .0704248{col 26}{space 2}  .006105{col 37}{space 1}   11.54{col 46}{space 3}0.000{col 54}{space 4} .0584577{col 67}{space 3} .0823919
+{txt}{space 9}chp {c |}{col 14}{res}{space 2}-.0024256{col 26}{space 2} .0025756{col 37}{space 1}   -0.94{col 46}{space 3}0.346{col 54}{space 4}-.0074744{col 67}{space 3} .0026233
+{txt}{space 9}own {c |}{col 14}{res}{space 2}-.0062447{col 26}{space 2} .0022989{col 37}{space 1}   -2.72{col 46}{space 3}0.007{col 54}{space 4}-.0107511{col 67}{space 3}-.0017383
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2}-.0000187{col 26}{space 2} .0000209{col 37}{space 1}   -0.90{col 46}{space 3}0.371{col 54}{space 4}-.0000598{col 67}{space 3} .0000223
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0000947{col 26}{space 2} .0000242{col 37}{space 1}    3.91{col 46}{space 3}0.000{col 54}{space 4} .0000472{col 67}{space 3} .0001422
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0000641{col 26}{space 2} .0000234{col 37}{space 1}   -2.74{col 46}{space 3}0.006{col 54}{space 4}  -.00011{col 67}{space 3}-.0000183
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.0119295{col 26}{space 2} .0027812{col 37}{space 1}   -4.29{col 46}{space 3}0.000{col 54}{space 4}-.0173814{col 67}{space 3}-.0064777
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2}-.0129885{col 26}{space 2} .0026573{col 37}{space 1}   -4.89{col 46}{space 3}0.000{col 54}{space 4}-.0181973{col 67}{space 3}-.0077797
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.0127637{col 26}{space 2} .0028402{col 37}{space 1}   -4.49{col 46}{space 3}0.000{col 54}{space 4}-.0183312{col 67}{space 3}-.0071962
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-.0038877{col 26}{space 2} .0040847{col 37}{space 1}   -0.95{col 46}{space 3}0.341{col 54}{space 4}-.0118946{col 67}{space 3} .0041192
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-.0127702{col 26}{space 2} .0027633{col 37}{space 1}   -4.62{col 46}{space 3}0.000{col 54}{space 4}-.0181869{col 67}{space 3}-.0073535
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0098225{col 26}{space 2} .0235108{col 37}{space 1}    0.42{col 46}{space 3}0.676{col 54}{space 4}-.0362639{col 67}{space 3} .0559089
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est6{txt} stored)
+
+{com}. 
+. esttab using ch4.tex, title(Methane emissions) se replace
+{res}{txt}(output written to {browse  `"ch4.tex"'})
+
+{com}. 
+. eststo clear
+{txt}
+{com}. 
+. * Scatter plot diagram in which errors are averaged across 20 separate bins
+. 
+. binscatter ln_methane ln_heat_rate if ln_heat_rate < 10.5, controls(summer_cap) name(ln_methane_plot)
+{res}{txt}
+{com}. 
+. * Scatter plot diagram in which errors are averaged across 20 separate bins
+. 
+. binscatter methane_rate ln_heat_rate if ln_heat_rate < 11, controls(summer_cap) name(methane_rate_plot)
+{res}{txt}
+{com}. 
+. 
+. /* ------------- */
+. /* NOx Emissions */
+. /* ------------- */
+. 
+. 
+. * Panel data regression of the level of co2 on the heat rate and other control variables; absorbing on state-level effects
+. 
+. eststo: areg ln_nox ln_heat_rate coal nat_gas petrol nameplate summer_cap winter_cap yr1-yr5 nerc2-nerc9, absorb(state) vce(robust)
+{p 0 6 2}{txt}note: nerc3 omitted because of collinearity{p_end}
+{p 0 6 2}note: nerc5 omitted because of collinearity{p_end}
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}     9,109
+{txt}Absorbed variable: {bf:state}{col 49}No. of categories{col 67}= {res}        50
+{txt}{col 49}F({res}  18{txt},{res}   9041{txt}){col 67}= {res}     23.17
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1623
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1561
+{txt}{col 49}Root MSE{col 67}= {res}    2.8500
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}      ln_nox{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2}-.4966535{col 26}{space 2}  .065541{col 37}{space 1}   -7.58{col 46}{space 3}0.000{col 54}{space 4}-.6251287{col 67}{space 3}-.3681784
+{txt}{space 8}coal {c |}{col 14}{res}{space 2} .5166956{col 26}{space 2} .1677458{col 37}{space 1}    3.08{col 46}{space 3}0.002{col 54}{space 4} .1878759{col 67}{space 3} .8455153
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2} -.240296{col 26}{space 2} .1371122{col 37}{space 1}   -1.75{col 46}{space 3}0.080{col 54}{space 4}-.5090669{col 67}{space 3} .0284749
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2}-.1356703{col 26}{space 2} .1393717{col 37}{space 1}   -0.97{col 46}{space 3}0.330{col 54}{space 4}-.4088703{col 67}{space 3} .1375298
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2}-.0002667{col 26}{space 2} .0006061{col 37}{space 1}   -0.44{col 46}{space 3}0.660{col 54}{space 4}-.0014547{col 67}{space 3} .0009214
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0058427{col 26}{space 2} .0008744{col 37}{space 1}    6.68{col 46}{space 3}0.000{col 54}{space 4} .0041287{col 67}{space 3} .0075566
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0046718{col 26}{space 2} .0008115{col 37}{space 1}   -5.76{col 46}{space 3}0.000{col 54}{space 4}-.0062626{col 67}{space 3} -.003081
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.0525464{col 26}{space 2}  .111112{col 37}{space 1}   -0.47{col 46}{space 3}0.636{col 54}{space 4} -.270351{col 67}{space 3} .1652583
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2}-.0301704{col 26}{space 2} .1069854{col 37}{space 1}   -0.28{col 46}{space 3}0.778{col 54}{space 4}-.2398859{col 67}{space 3} .1795451
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.2586086{col 26}{space 2} .1050745{col 37}{space 1}   -2.46{col 46}{space 3}0.014{col 54}{space 4}-.4645784{col 67}{space 3}-.0526388
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-.1213712{col 26}{space 2} .1084838{col 37}{space 1}   -1.12{col 46}{space 3}0.263{col 54}{space 4}-.3340239{col 67}{space 3} .0912815
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2} -.108899{col 26}{space 2} .1078477{col 37}{space 1}   -1.01{col 46}{space 3}0.313{col 54}{space 4} -.320305{col 67}{space 3}  .102507
+{txt}{space 7}nerc2 {c |}{col 14}{res}{space 2}-.7696448{col 26}{space 2} .6089238{col 37}{space 1}   -1.26{col 46}{space 3}0.206{col 54}{space 4}-1.963273{col 67}{space 3} .4239838
+{txt}{space 7}nerc3 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc4 {c |}{col 14}{res}{space 2}-.8552187{col 26}{space 2} .4603179{col 37}{space 1}   -1.86{col 46}{space 3}0.063{col 54}{space 4}-1.757546{col 67}{space 3} .0471086
+{txt}{space 7}nerc5 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc6 {c |}{col 14}{res}{space 2} .9352277{col 26}{space 2} .4338251{col 37}{space 1}    2.16{col 46}{space 3}0.031{col 54}{space 4} .0848324{col 67}{space 3} 1.785623
+{txt}{space 7}nerc7 {c |}{col 14}{res}{space 2} .5734643{col 26}{space 2} .4090526{col 37}{space 1}    1.40{col 46}{space 3}0.161{col 54}{space 4}-.2283714{col 67}{space 3}   1.3753
+{txt}{space 7}nerc8 {c |}{col 14}{res}{space 2} .7440582{col 26}{space 2} .4051056{col 37}{space 1}    1.84{col 46}{space 3}0.066{col 54}{space 4}-.0500404{col 67}{space 3} 1.538157
+{txt}{space 7}nerc9 {c |}{col 14}{res}{space 2} .2103509{col 26}{space 2} .3979034{col 37}{space 1}    0.53{col 46}{space 3}0.597{col 54}{space 4}-.5696298{col 67}{space 3} .9903316
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  7.48211{col 26}{space 2} .7265383{col 37}{space 1}   10.30{col 46}{space 3}0.000{col 54}{space 4} 6.057931{col 67}{space 3}  8.90629
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est1{txt} stored)
+
+{com}. eststo: areg ln_nox ln_heat_rate coal nat_gas petrol chp own nameplate summer_cap winter_cap yr1-yr5 nerc2-nerc9, absorb(state) vce(robust)
+{p 0 6 2}{txt}note: nerc3 omitted because of collinearity{p_end}
+{p 0 6 2}note: nerc5 omitted because of collinearity{p_end}
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}     9,109
+{txt}Absorbed variable: {bf:state}{col 49}No. of categories{col 67}= {res}        50
+{txt}{col 49}F({res}  20{txt},{res}   9039{txt}){col 67}= {res}     23.95
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1687
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1623
+{txt}{col 49}Root MSE{col 67}= {res}    2.8394
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}      ln_nox{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2} -.585229{col 26}{space 2} .0703034{col 37}{space 1}   -8.32{col 46}{space 3}0.000{col 54}{space 4}-.7230395{col 67}{space 3}-.4474184
+{txt}{space 8}coal {c |}{col 14}{res}{space 2}  .578801{col 26}{space 2} .1678655{col 37}{space 1}    3.45{col 46}{space 3}0.001{col 54}{space 4} .2497465{col 67}{space 3} .9078555
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2} -.130139{col 26}{space 2} .1371215{col 37}{space 1}   -0.95{col 46}{space 3}0.343{col 54}{space 4}-.3989282{col 67}{space 3} .1386502
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2} .0065023{col 26}{space 2} .1407945{col 37}{space 1}    0.05{col 46}{space 3}0.963{col 54}{space 4}-.2694868{col 67}{space 3} .2824913
+{txt}{space 9}chp {c |}{col 14}{res}{space 2} .5465835{col 26}{space 2} .0777219{col 37}{space 1}    7.03{col 46}{space 3}0.000{col 54}{space 4} .3942309{col 67}{space 3} .6989361
+{txt}{space 9}own {c |}{col 14}{res}{space 2}-.3914324{col 26}{space 2} .0732714{col 37}{space 1}   -5.34{col 46}{space 3}0.000{col 54}{space 4}-.5350609{col 67}{space 3}-.2478039
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2}-.0000128{col 26}{space 2} .0006046{col 37}{space 1}   -0.02{col 46}{space 3}0.983{col 54}{space 4} -.001198{col 67}{space 3} .0011724
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0055467{col 26}{space 2} .0008816{col 37}{space 1}    6.29{col 46}{space 3}0.000{col 54}{space 4} .0038186{col 67}{space 3} .0072748
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0045987{col 26}{space 2} .0008123{col 37}{space 1}   -5.66{col 46}{space 3}0.000{col 54}{space 4}-.0061909{col 67}{space 3}-.0030065
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2} .0324677{col 26}{space 2} .1107551{col 37}{space 1}    0.29{col 46}{space 3}0.769{col 54}{space 4}-.1846374{col 67}{space 3} .2495729
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2} .0508115{col 26}{space 2} .1064884{col 37}{space 1}    0.48{col 46}{space 3}0.633{col 54}{space 4}-.1579298{col 67}{space 3} .2595528
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.1833128{col 26}{space 2} .1045638{col 37}{space 1}   -1.75{col 46}{space 3}0.080{col 54}{space 4}-.3882815{col 67}{space 3} .0216559
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2} -.052883{col 26}{space 2}  .108444{col 37}{space 1}   -0.49{col 46}{space 3}0.626{col 54}{space 4}-.2654577{col 67}{space 3} .1596918
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-.0534614{col 26}{space 2} .1078176{col 37}{space 1}   -0.50{col 46}{space 3}0.620{col 54}{space 4}-.2648084{col 67}{space 3} .1578856
+{txt}{space 7}nerc2 {c |}{col 14}{res}{space 2}-.9015255{col 26}{space 2} .5984437{col 37}{space 1}   -1.51{col 46}{space 3}0.132{col 54}{space 4}-2.074611{col 67}{space 3} .2715597
+{txt}{space 7}nerc3 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc4 {c |}{col 14}{res}{space 2} -.833848{col 26}{space 2} .4513011{col 37}{space 1}   -1.85{col 46}{space 3}0.065{col 54}{space 4}  -1.7185{col 67}{space 3} .0508044
+{txt}{space 7}nerc5 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc6 {c |}{col 14}{res}{space 2} .8037128{col 26}{space 2} .4258054{col 37}{space 1}    1.89{col 46}{space 3}0.059{col 54}{space 4}-.0309623{col 67}{space 3} 1.638388
+{txt}{space 7}nerc7 {c |}{col 14}{res}{space 2} .4416151{col 26}{space 2} .4003745{col 37}{space 1}    1.10{col 46}{space 3}0.270{col 54}{space 4}-.3432097{col 67}{space 3}  1.22644
+{txt}{space 7}nerc8 {c |}{col 14}{res}{space 2} .7243599{col 26}{space 2} .3949281{col 37}{space 1}    1.83{col 46}{space 3}0.067{col 54}{space 4}-.0497887{col 67}{space 3} 1.498508
+{txt}{space 7}nerc9 {c |}{col 14}{res}{space 2} .2026539{col 26}{space 2} .3893804{col 37}{space 1}    0.52{col 46}{space 3}0.603{col 54}{space 4}-.5606199{col 67}{space 3} .9659276
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 8.319861{col 26}{space 2} .7611822{col 37}{space 1}   10.93{col 46}{space 3}0.000{col 54}{space 4} 6.827772{col 67}{space 3}  9.81195
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est2{txt} stored)
+
+{com}. eststo: areg ln_nox ln_heat_rate coal nat_gas petrol chp own nameplate summer_cap winter_cap yr1-yr5, absorb(nerc) vce(robust)
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}     9,109
+{txt}Absorbed variable: {bf:nerc}{col 49}No. of categories{col 67}= {res}        10
+{txt}{col 49}F({res}  14{txt},{res}   9085{txt}){col 67}= {res}     34.78
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1020
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.0997
+{txt}{col 49}Root MSE{col 67}= {res}    2.9437
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}      ln_nox{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2} -.528881{col 26}{space 2} .0650477{col 37}{space 1}   -8.13{col 46}{space 3}0.000{col 54}{space 4}-.6563892{col 67}{space 3}-.4013729
+{txt}{space 8}coal {c |}{col 14}{res}{space 2} .6904447{col 26}{space 2} .1707527{col 37}{space 1}    4.04{col 46}{space 3}0.000{col 54}{space 4}  .355731{col 67}{space 3} 1.025159
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2}-.2659809{col 26}{space 2} .1413426{col 37}{space 1}   -1.88{col 46}{space 3}0.060{col 54}{space 4}-.5430443{col 67}{space 3} .0110825
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2}-.0747541{col 26}{space 2} .1453714{col 37}{space 1}   -0.51{col 46}{space 3}0.607{col 54}{space 4}-.3597146{col 67}{space 3} .2102065
+{txt}{space 9}chp {c |}{col 14}{res}{space 2} .5712173{col 26}{space 2} .0768939{col 37}{space 1}    7.43{col 46}{space 3}0.000{col 54}{space 4}  .420488{col 67}{space 3} .7219465
+{txt}{space 9}own {c |}{col 14}{res}{space 2}-.4345745{col 26}{space 2} .0741774{col 37}{space 1}   -5.86{col 46}{space 3}0.000{col 54}{space 4} -.579979{col 67}{space 3}-.2891701
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2} .0005536{col 26}{space 2} .0006068{col 37}{space 1}    0.91{col 46}{space 3}0.362{col 54}{space 4}-.0006359{col 67}{space 3} .0017431
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0047516{col 26}{space 2} .0008747{col 37}{space 1}    5.43{col 46}{space 3}0.000{col 54}{space 4} .0030369{col 67}{space 3} .0064663
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0043751{col 26}{space 2} .0007891{col 37}{space 1}   -5.54{col 46}{space 3}0.000{col 54}{space 4}-.0059218{col 67}{space 3}-.0028284
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.0784343{col 26}{space 2} .1115554{col 37}{space 1}   -0.70{col 46}{space 3}0.482{col 54}{space 4} -.297108{col 67}{space 3} .1402395
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2} -.071207{col 26}{space 2} .1070182{col 37}{space 1}   -0.67{col 46}{space 3}0.506{col 54}{space 4}-.2809867{col 67}{space 3} .1385727
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.2592997{col 26}{space 2} .1065739{col 37}{space 1}   -2.43{col 46}{space 3}0.015{col 54}{space 4}-.4682085{col 67}{space 3}-.0503909
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-.1025362{col 26}{space 2} .1126489{col 37}{space 1}   -0.91{col 46}{space 3}0.363{col 54}{space 4}-.3233533{col 67}{space 3}  .118281
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-.1356673{col 26}{space 2} .1103605{col 37}{space 1}   -1.23{col 46}{space 3}0.219{col 54}{space 4}-.3519987{col 67}{space 3} .0806641
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 8.203617{col 26}{space 2} .6653519{col 37}{space 1}   12.33{col 46}{space 3}0.000{col 54}{space 4} 6.899378{col 67}{space 3} 9.507857
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est3{txt} stored)
+
+{com}. eststo: areg nox_rate ln_heat_rate coal nat_gas petrol nameplate summer_cap winter_cap yr1-yr5 nerc2-nerc9 if nox_rate < 1, absorb(state) vce(robust)
+{p 0 6 2}{txt}note: nerc3 omitted because of collinearity{p_end}
+{p 0 6 2}note: nerc5 omitted because of collinearity{p_end}
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}     8,628
+{txt}Absorbed variable: {bf:state}{col 49}No. of categories{col 67}= {res}        50
+{txt}{col 49}F({res}  18{txt},{res}   8560{txt}){col 67}= {res}     25.92
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1474
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1407
+{txt}{col 49}Root MSE{col 67}= {res}    0.1084
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}    nox_rate{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2} .0028019{col 26}{space 2} .0029964{col 37}{space 1}    0.94{col 46}{space 3}0.350{col 54}{space 4}-.0030717{col 67}{space 3} .0086755
+{txt}{space 8}coal {c |}{col 14}{res}{space 2}-.0253737{col 26}{space 2} .0061092{col 37}{space 1}   -4.15{col 46}{space 3}0.000{col 54}{space 4}-.0373493{col 67}{space 3}-.0133982
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2}  .003812{col 26}{space 2} .0057528{col 37}{space 1}    0.66{col 46}{space 3}0.508{col 54}{space 4}-.0074648{col 67}{space 3} .0150888
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2}  .071727{col 26}{space 2} .0068204{col 37}{space 1}   10.52{col 46}{space 3}0.000{col 54}{space 4} .0583573{col 67}{space 3} .0850966
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2} .0000192{col 26}{space 2} .0000249{col 37}{space 1}    0.77{col 46}{space 3}0.442{col 54}{space 4}-.0000297{col 67}{space 3} .0000681
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0001524{col 26}{space 2} .0000334{col 37}{space 1}    4.56{col 46}{space 3}0.000{col 54}{space 4} .0000869{col 67}{space 3} .0002179
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0001561{col 26}{space 2} .0000318{col 37}{space 1}   -4.91{col 46}{space 3}0.000{col 54}{space 4}-.0002185{col 67}{space 3}-.0000938
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.0125966{col 26}{space 2} .0032851{col 37}{space 1}   -3.83{col 46}{space 3}0.000{col 54}{space 4}-.0190361{col 67}{space 3} -.006157
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2}-.0143761{col 26}{space 2} .0032684{col 37}{space 1}   -4.40{col 46}{space 3}0.000{col 54}{space 4} -.020783{col 67}{space 3}-.0079692
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.0171888{col 26}{space 2} .0029748{col 37}{space 1}   -5.78{col 46}{space 3}0.000{col 54}{space 4}-.0230201{col 67}{space 3}-.0113574
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-.0095332{col 26}{space 2} .0039733{col 37}{space 1}   -2.40{col 46}{space 3}0.016{col 54}{space 4}-.0173218{col 67}{space 3}-.0017446
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2} -.011964{col 26}{space 2} .0036008{col 37}{space 1}   -3.32{col 46}{space 3}0.001{col 54}{space 4}-.0190225{col 67}{space 3}-.0049056
+{txt}{space 7}nerc2 {c |}{col 14}{res}{space 2}-.0255804{col 26}{space 2} .0218269{col 37}{space 1}   -1.17{col 46}{space 3}0.241{col 54}{space 4}-.0683664{col 67}{space 3} .0172055
+{txt}{space 7}nerc3 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc4 {c |}{col 14}{res}{space 2}-.0714382{col 26}{space 2} .0181766{col 37}{space 1}   -3.93{col 46}{space 3}0.000{col 54}{space 4}-.1070686{col 67}{space 3}-.0358078
+{txt}{space 7}nerc5 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc6 {c |}{col 14}{res}{space 2}-.0208976{col 26}{space 2} .0190072{col 37}{space 1}   -1.10{col 46}{space 3}0.272{col 54}{space 4}-.0581562{col 67}{space 3}  .016361
+{txt}{space 7}nerc7 {c |}{col 14}{res}{space 2}-.0092419{col 26}{space 2} .0188117{col 37}{space 1}   -0.49{col 46}{space 3}0.623{col 54}{space 4}-.0461173{col 67}{space 3} .0276335
+{txt}{space 7}nerc8 {c |}{col 14}{res}{space 2} .0238421{col 26}{space 2} .0184213{col 37}{space 1}    1.29{col 46}{space 3}0.196{col 54}{space 4} -.012268{col 67}{space 3} .0599523
+{txt}{space 7}nerc9 {c |}{col 14}{res}{space 2}-.0180888{col 26}{space 2} .0203029{col 37}{space 1}   -0.89{col 46}{space 3}0.373{col 54}{space 4}-.0578873{col 67}{space 3} .0217097
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0026042{col 26}{space 2} .0339336{col 37}{space 1}    0.08{col 46}{space 3}0.939{col 54}{space 4}-.0639138{col 67}{space 3} .0691223
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est4{txt} stored)
+
+{com}. eststo: areg nox_rate ln_heat_rate coal nat_gas petrol chp own nameplate summer_cap winter_cap yr1-yr5 nerc2-nerc9 if nox_rate < 1, absorb(state) vce(robust)
+{p 0 6 2}{txt}note: nerc3 omitted because of collinearity{p_end}
+{p 0 6 2}note: nerc5 omitted because of collinearity{p_end}
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}     8,628
+{txt}Absorbed variable: {bf:state}{col 49}No. of categories{col 67}= {res}        50
+{txt}{col 49}F({res}  20{txt},{res}   8558{txt}){col 67}= {res}     23.51
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1477
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1408
+{txt}{col 49}Root MSE{col 67}= {res}    0.1084
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}    nox_rate{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2} .0039724{col 26}{space 2} .0030816{col 37}{space 1}    1.29{col 46}{space 3}0.197{col 54}{space 4}-.0020682{col 67}{space 3} .0100131
+{txt}{space 8}coal {c |}{col 14}{res}{space 2}-.0265475{col 26}{space 2}  .006205{col 37}{space 1}   -4.28{col 46}{space 3}0.000{col 54}{space 4}-.0387108{col 67}{space 3}-.0143841
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2} .0026866{col 26}{space 2} .0058145{col 37}{space 1}    0.46{col 46}{space 3}0.644{col 54}{space 4}-.0087111{col 67}{space 3} .0140844
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2} .0699842{col 26}{space 2} .0069831{col 37}{space 1}   10.02{col 46}{space 3}0.000{col 54}{space 4} .0562957{col 67}{space 3} .0836728
+{txt}{space 9}chp {c |}{col 14}{res}{space 2}-.0052443{col 26}{space 2} .0027561{col 37}{space 1}   -1.90{col 46}{space 3}0.057{col 54}{space 4}-.0106469{col 67}{space 3} .0001583
+{txt}{space 9}own {c |}{col 14}{res}{space 2}-.0015408{col 26}{space 2} .0026788{col 37}{space 1}   -0.58{col 46}{space 3}0.565{col 54}{space 4}-.0067919{col 67}{space 3} .0037103
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2} .0000189{col 26}{space 2} .0000249{col 37}{space 1}    0.76{col 46}{space 3}0.446{col 54}{space 4}-.0000298{col 67}{space 3} .0000677
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0001506{col 26}{space 2} .0000333{col 37}{space 1}    4.52{col 46}{space 3}0.000{col 54}{space 4} .0000853{col 67}{space 3} .0002159
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0001551{col 26}{space 2} .0000318{col 37}{space 1}   -4.88{col 46}{space 3}0.000{col 54}{space 4}-.0002173{col 67}{space 3}-.0000929
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.0128716{col 26}{space 2} .0032758{col 37}{space 1}   -3.93{col 46}{space 3}0.000{col 54}{space 4} -.019293{col 67}{space 3}-.0064503
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2}-.0146488{col 26}{space 2} .0032565{col 37}{space 1}   -4.50{col 46}{space 3}0.000{col 54}{space 4}-.0210324{col 67}{space 3}-.0082653
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.0173548{col 26}{space 2} .0029757{col 37}{space 1}   -5.83{col 46}{space 3}0.000{col 54}{space 4}-.0231879{col 67}{space 3}-.0115218
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2} -.009598{col 26}{space 2} .0039713{col 37}{space 1}   -2.42{col 46}{space 3}0.016{col 54}{space 4}-.0173826{col 67}{space 3}-.0018133
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-.0119532{col 26}{space 2} .0035763{col 37}{space 1}   -3.34{col 46}{space 3}0.001{col 54}{space 4}-.0189637{col 67}{space 3}-.0049427
+{txt}{space 7}nerc2 {c |}{col 14}{res}{space 2}-.0233826{col 26}{space 2} .0218993{col 37}{space 1}   -1.07{col 46}{space 3}0.286{col 54}{space 4}-.0663105{col 67}{space 3} .0195452
+{txt}{space 7}nerc3 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc4 {c |}{col 14}{res}{space 2}-.0708426{col 26}{space 2}  .018172{col 37}{space 1}   -3.90{col 46}{space 3}0.000{col 54}{space 4}-.1064642{col 67}{space 3}-.0352211
+{txt}{space 7}nerc5 {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}nerc6 {c |}{col 14}{res}{space 2}-.0191876{col 26}{space 2} .0190494{col 37}{space 1}   -1.01{col 46}{space 3}0.314{col 54}{space 4}-.0565289{col 67}{space 3} .0181538
+{txt}{space 7}nerc7 {c |}{col 14}{res}{space 2}-.0074427{col 26}{space 2} .0188927{col 37}{space 1}   -0.39{col 46}{space 3}0.694{col 54}{space 4} -.044477{col 67}{space 3} .0295916
+{txt}{space 7}nerc8 {c |}{col 14}{res}{space 2} .0243814{col 26}{space 2} .0184689{col 37}{space 1}    1.32{col 46}{space 3}0.187{col 54}{space 4} -.011822{col 67}{space 3} .0605848
+{txt}{space 7}nerc9 {c |}{col 14}{res}{space 2}-.0168362{col 26}{space 2} .0204151{col 37}{space 1}   -0.82{col 46}{space 3}0.410{col 54}{space 4}-.0568547{col 67}{space 3} .0231822
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0017288{col 26}{space 2} .0342636{col 37}{space 1}    0.05{col 46}{space 3}0.960{col 54}{space 4}-.0654361{col 67}{space 3} .0688937
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est5{txt} stored)
+
+{com}. eststo: areg nox_rate ln_heat_rate coal nat_gas petrol chp own nameplate summer_cap winter_cap yr1-yr5 if nox_rate < 1, absorb(nerc) vce(robust)
+{res}
+{txt}Linear regression, absorbing indicators{col 49}Number of obs{col 67}= {res}     8,628
+{txt}Absorbed variable: {bf:nerc}{col 49}No. of categories{col 67}= {res}        10
+{txt}{col 49}F({res}  14{txt},{res}   8604{txt}){col 67}= {res}     33.64
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+{txt}{col 49}R-squared{col 67}= {res}    0.1065
+{txt}{col 49}Adj R-squared{col 67}= {res}    0.1041
+{txt}{col 49}Root MSE{col 67}= {res}    0.1106
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}    nox_rate{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+ln_heat_rate {c |}{col 14}{res}{space 2} .0092336{col 26}{space 2} .0030518{col 37}{space 1}    3.03{col 46}{space 3}0.002{col 54}{space 4} .0032514{col 67}{space 3} .0152158
+{txt}{space 8}coal {c |}{col 14}{res}{space 2}-.0141318{col 26}{space 2} .0059111{col 37}{space 1}   -2.39{col 46}{space 3}0.017{col 54}{space 4} -.025719{col 67}{space 3}-.0025445
+{txt}{space 5}nat_gas {c |}{col 14}{res}{space 2} .0027569{col 26}{space 2} .0059321{col 37}{space 1}    0.46{col 46}{space 3}0.642{col 54}{space 4}-.0088715{col 67}{space 3} .0143853
+{txt}{space 6}petrol {c |}{col 14}{res}{space 2} .0700567{col 26}{space 2} .0070272{col 37}{space 1}    9.97{col 46}{space 3}0.000{col 54}{space 4} .0562817{col 67}{space 3} .0838316
+{txt}{space 9}chp {c |}{col 14}{res}{space 2}-.0050525{col 26}{space 2} .0026847{col 37}{space 1}   -1.88{col 46}{space 3}0.060{col 54}{space 4}-.0103151{col 67}{space 3}   .00021
+{txt}{space 9}own {c |}{col 14}{res}{space 2}-.0008757{col 26}{space 2} .0026754{col 37}{space 1}   -0.33{col 46}{space 3}0.743{col 54}{space 4}-.0061202{col 67}{space 3} .0043687
+{txt}{space 3}nameplate {c |}{col 14}{res}{space 2} .0000204{col 26}{space 2} .0000258{col 37}{space 1}    0.79{col 46}{space 3}0.431{col 54}{space 4}-.0000303{col 67}{space 3}  .000071
+{txt}{space 2}summer_cap {c |}{col 14}{res}{space 2} .0001087{col 26}{space 2} .0000327{col 37}{space 1}    3.32{col 46}{space 3}0.001{col 54}{space 4} .0000446{col 67}{space 3} .0001728
+{txt}{space 2}winter_cap {c |}{col 14}{res}{space 2}-.0001133{col 26}{space 2} .0000289{col 37}{space 1}   -3.92{col 46}{space 3}0.000{col 54}{space 4}-.0001701{col 67}{space 3}-.0000566
+{txt}{space 9}yr1 {c |}{col 14}{res}{space 2}-.0186507{col 26}{space 2} .0033876{col 37}{space 1}   -5.51{col 46}{space 3}0.000{col 54}{space 4}-.0252912{col 67}{space 3}-.0120101
+{txt}{space 9}yr2 {c |}{col 14}{res}{space 2}-.0200846{col 26}{space 2} .0033081{col 37}{space 1}   -6.07{col 46}{space 3}0.000{col 54}{space 4}-.0265692{col 67}{space 3}-.0135999
+{txt}{space 9}yr3 {c |}{col 14}{res}{space 2}-.0225651{col 26}{space 2} .0030687{col 37}{space 1}   -7.35{col 46}{space 3}0.000{col 54}{space 4}-.0285804{col 67}{space 3}-.0165497
+{txt}{space 9}yr4 {c |}{col 14}{res}{space 2}-.0145146{col 26}{space 2} .0041101{col 37}{space 1}   -3.53{col 46}{space 3}0.000{col 54}{space 4}-.0225713{col 67}{space 3}-.0064579
+{txt}{space 9}yr5 {c |}{col 14}{res}{space 2}-.0169106{col 26}{space 2} .0037029{col 37}{space 1}   -4.57{col 46}{space 3}0.000{col 54}{space 4}-.0241693{col 67}{space 3} -.009652
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.0613964{col 26}{space 2} .0310552{col 37}{space 1}   -1.98{col 46}{space 3}0.048{col 54}{space 4} -.122272{col 67}{space 3}-.0005207
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+({res}est6{txt} stored)
+
+{com}. 
+. esttab using nox.tex, title(Nitrogen oxide emissions) se replace
+{res}{txt}(output written to {browse  `"nox.tex"'})
+
+{com}. 
+. eststo clear
+{txt}
+{com}. 
+. * Scatter plot diagram in which errors are averaged across 20 separate bins
+. 
+. binscatter ln_nox ln_heat_rate if ln_heat_rate < 10.5, controls(summer_cap coal) name(ln_nox_plot)
+{res}{txt}
+{com}. 
+. * Scatter plot diagram in which errors are averaged across 20 separate bins
+. 
+. binscatter nox_rate ln_heat_rate if ln_heat_rate, controls(summer_cap coal) name(nox_rate_plot)
+{res}{txt}
+{com}. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/burnettjw/Documents/Documents/Research/Heat rate efficiency and the rebound effect/Stata data and do files/Final Data/final_regression_analysis_2011_2016.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}29 Nov 2018, 14:36:25
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
