@@ -12,3 +12,8 @@ In August 2018, the U.S. Environmental Protection Agency (EPA) proposed a new po
 If you do not have access to Energy Policy, then you can get a previous copy of the working manuscript from SSRN: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3312952.
 
 Note: All of the analysis was conducted in STATA. Therefore, the code and data format are STATA files.
+
+The files are as follows:
+1) bk_ep_code.do -- This is the STATA do file; that is, the STATA code to carry out all of the analysis within the paper.
+2) bk_ep_data.dta -- This is the STATA data file; it contains all of the data for the paper in a saved STATA data file format.
+3) bk_ep_logfile.smcl -- This is the STATA log file; it is a STATA formatted log file which shows the code and all of the results for the paper.
