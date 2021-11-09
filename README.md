@@ -4,6 +4,8 @@ This file contains the data and code for a previously published paper entitled "
 
 Burnett, J.W. and L.L. Kiesling. 2019. Power plant heat-rate efficiency as a regulatory mechanism: Implications for energy emission rates and levels. Energy Policy, 134, 1-13.
 
+You can find Lynne's github page here: https://github.com/lkkinetic.
+
 Here is the abstract:
 
 Abstract
